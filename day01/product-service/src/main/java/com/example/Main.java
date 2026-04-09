@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,10 +33,17 @@ public class Main {
         Logger.log(myMap);
         System.out.println(mySet);
 
+        Predicate<User> isAudultPredicate = u -> u.getAge() > 18;
         Function<User,Boolean> isAudult = u -> u.getAge() > 18;
+        Function<User,Integer> getAge = u -> u.getAge();
+        Consumer<Object> log = o -> System.out.println(o);
+
         System.out.println(isAudult.apply(yagnik));
+        System.out.println(getAge.apply(yagnik));
         // test
         Logger.log("is this Object is named harsh :" + new Logger.inner());
+        log.accept("Hello");
+        isAudultPredicate.test(yagnik);
 
 
     }

@@ -1,12 +1,14 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        List<Product> products = List.of(
+        List<Product> products = new ArrayList<>(List.of(
                 new Product("car04",4000),
                 new Product("bike03",7000),
                 new Product("car02",2000),
@@ -19,18 +21,35 @@ public class Main {
                 new Product("truck03",11000),
                 new Product("bike02",6000),
                 new Product("truck04",12000)
-        );
+        ));
+        products.add(null);
+
+//        List<String> result = products.stream()
+//                .filter(Objects::nonNull)
+//                .filter(p -> {
+//                    System.out.println("Filtering...");
+//                    return p.getPrice() >= 1000;
+//                }).map(p->{
+//                    System.out.println("Mapping...");
+//                    return p.toString() + '\n';
+//                }).sorted()
+//                .toList();
 
         List<String> result = products.stream()
+                .filter(Objects::nonNull)
                 .filter(p -> {
                     System.out.println("Filtering...");
                     return p.getPrice() >= 1000;
-                }).map(p->{
+                })
+                .map(p -> {
                     System.out.println("Mapping...");
                     return p.toString() + '\n';
-                }).sorted()
+                })
+                .sorted()
                 .toList();
 
         System.out.println(result);
     }
+
+
 }
