@@ -32,6 +32,7 @@ public class Main {
 
         Function<User,Boolean> isAudult = u -> u.getAge() > 18;
         System.out.println(isAudult.apply(yagnik));
+        // test
 
     }
 
